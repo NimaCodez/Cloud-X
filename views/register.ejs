@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles/register.style.css">
+    <title>Login | Cloud-x</title>
+</head>
+<body>
+    <form action="/register" method="post" class="login-form" enctype="multipart/form-data">
+        <div class="form-head"> 
+            <h1 class="form-head-text">Register.</h1>
+        </div>
+        <div class="form-body">
+            <input type="file" value="Upload Profile" placeholder="upload profile" name="profile" class="profile-photo" >
+            <input type="text" name="username" placeholder="username" class="username-input">
+            <input type="text" name="email" placeholder="email" class="email-input">
+            <input type="password" name="password" placeholder="password">
+            <button type="submit" class="submit-button">Login!</button>
+        </div>
+        <div class="form-footer">
+            Already have an account? <a href="/login">Login.</a>
+        </div>
+    </form>
+</body>
+</html>

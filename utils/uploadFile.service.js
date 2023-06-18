@@ -1,14 +1,20 @@
+const { mkdirSync } = require("fs");
 const createHttpError = require("http-errors");
+const md5 = require("md5");
 const multer = require("multer");
 const path = require("path");
 
-const CreateProfilesPath = (username) => path.join(__dirname, "..", "public", "uploads", "profiles", username);
+const CreateProfilesPath = () => {
+    const directory = path.join(__dirname, "..", "public", "uploads", "profiles");
+    mkdirSync(directory, { recursive: true });
+    return directory;
+}
 const CreateImageNameHash = (imageName) => md5(imageName);
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         if (file?.originalname) {
-            const filePath = CreateProfilesPath(req.user.username)
+            const filePath = CreateProfilesPath();
             req.body.fileUploadPath = filePath;
             return cb(null, filePath);
         }
@@ -21,12 +27,12 @@ const storage = multer.diskStorage({
             req.body.fileName = fileName;
             return cb(null, fileName);
         }
-        return cb (null, null);
+        return cb(null, null);
     }
 })
 
 function FileFilter(req, file, cb) {
-    const MimeTypes =  [".png", ".jpg", ".jpeg", ".webp", ".gif"]
+    const MimeTypes = [".png", ".jpg", ".jpeg", ".webp", ".gif"]
     const Ext = path.extname(file.originalname)
     if (MimeTypes.includes(Ext)) {
         return cb(null, true)

@@ -5,14 +5,14 @@
         <%if (isLoggedIn) {%>
         <li class="nav-profile-image">
           <img
-            src="../../public/images/OIP.jpg"
+            src=<%-user.profilePicture%>
             alt="profile image"
             class="profile-pic"
           />
           <!-- Change src to EJS -->
         </li>
         <li class="nav-username">
-          <h3 class="username-text">username</h3>
+          <h3 class="username-text"><%-user.username%></h3>
         </li>
         <%} else {%>
           <h3>Cloud-x</h3>
@@ -28,7 +28,11 @@
       </ul>
     </div>
     <div class="nav-part">
-      <a href="/login" class="nav-login-button">Login | Signup</a>
+      <%if (isLoggedIn) {%>
+        <a href="/dash" class="nav-login-button">Dashboard</a>
+        <%} else {%>
+          <a href="/login" class="nav-login-button">Login | Signup</a>
+        <%}%>
     </div>
   </nav>
 </header>

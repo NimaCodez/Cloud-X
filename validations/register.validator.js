@@ -10,7 +10,7 @@ const RegisterValidator = () => {
         body('username').notEmpty().withMessage('Please Provide a username').custom (async (username, ctx) => {
             const user = UserModel.findOne({ username });
             if (user) throw new Error('This username is already in use')
-        })
+        }),
     ]
 }
 
