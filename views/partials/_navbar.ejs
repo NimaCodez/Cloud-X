@@ -1,0 +1,34 @@
+<header class="header">
+  <nav class="nav">
+    <div class="nav-part">
+      <ul class="nav-profile-username">
+        <%if (isLoggedIn) {%>
+        <li class="nav-profile-image">
+          <img
+            src="../../public/images/OIP.jpg"
+            alt="profile image"
+            class="profile-pic"
+          />
+          <!-- Change src to EJS -->
+        </li>
+        <li class="nav-username">
+          <h3 class="username-text">username</h3>
+        </li>
+        <%} else {%>
+          <h3>Cloud-x</h3>
+          <%}%>
+      </ul>
+    </div>
+    <div class="nav-part">
+      <ul class="nav-main-menu">
+        <li class="main-menu-item">Home</li>
+        <li class="main-menu-item">Services</li>
+        <li class="main-menu-item">Blogs</li>
+        <li class="main-menu-item"><a href="https://Github.com/itsDevNima" target="_blank">Github</a></li>
+      </ul>
+    </div>
+    <div class="nav-part">
+      <a href="/login" class="nav-login-button">Login | Signup</a>
+    </div>
+  </nav>
+</header>

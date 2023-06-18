@@ -1,0 +1,48 @@
+header {
+    background-color: #181818;
+    padding: 1em 1.3em;
+    color: #fff;
+    border-bottom: 1px solid #404040;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    list-style: none;
+    margin: 0 .5rem;
+}
+
+.main-menu-item:hover {
+    color: #00CE79;
+    transition: all .1s ease-out;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.profile-pic {
+    width:  50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.nav-login-button {
+    padding: 1em 1em;
+    background: linear-gradient(to right, #55c68f, #00CE79);
+    color: #fff;
+    border-radius: .3em;
+    display: inline-block;
+}
