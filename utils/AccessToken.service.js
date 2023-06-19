@@ -36,7 +36,8 @@ async function VerifyAccessToken(req, res, next) {
                         password: 0
                     });
                     if (!user) return res.render('register');
-    
+                    if (user && user.token !== token) return res.render('login');
+                    
                     req.user = user;
                     req.isLoggedIn = true;
                     return next()

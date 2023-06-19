@@ -7,10 +7,7 @@ const RegisterValidator = () => {
 
         body('password').isLength({ min: 6, max: 25 }).withMessage('Password Must be 6-25 Characters').notEmpty().withMessage('Please enter a password'),
 
-        body('username').notEmpty().withMessage('Please Provide a username').custom (async (username, ctx) => {
-            const user = UserModel.findOne({ username });
-            if (user) throw new Error('This username is already in use')
-        }),
+        body('username').notEmpty().withMessage('Please Provide a username'),
     ]
 }
 

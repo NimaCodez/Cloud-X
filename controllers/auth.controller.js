@@ -3,7 +3,6 @@ const { SendResponse } = require("../utils/SendResponse");
 const { StatusCodes } = require('http-status-codes');
 const { comparePassword, hashPassword } = require("../utils/ecnryption.service");
 const { SignAccessToken } = require("../utils/AccessToken.service");
-const path = require('path');
 
 async function Login(req, res, next) {
     try {
@@ -35,6 +34,32 @@ function checkIfFieldsAreNull(...fields) {
     return nulls;
 }
 
+async function CheckUsernameAndEmailExistence(res, username, email) {
+    const user = await UserModel.findOne({ $or: [
+        { username },
+        { email }
+    ]})
+
+    if (!user) return;
+
+    let duplicateField;
+    
+    if (user.username == username && user.email != email) {
+        duplicateField = 'Username'
+        throw SendResponse(res, StatusCodes.BAD_REQUEST, false, `${duplicateField} already exists`)
+    }
+
+    else if (user.email == email && user.username != username) {
+        duplicateField = 'email'
+        throw SendResponse(res, StatusCodes.BAD_REQUEST, false, `${duplicateField} already exists`)
+    }
+    
+    else if (user.username == username && user.email == email) {
+        duplicateField = 'Username and Email'
+        throw SendResponse(res, StatusCodes.BAD_REQUEST, false, `${duplicateField} already exists`)
+    } 
+}
+
 async function Register(req, res, next) {
     try {
         const { email, password, username, fileUploadPath, fileName } = req.body;
@@ -43,7 +68,9 @@ async function Register(req, res, next) {
         if (nulls !== 0) {
             throw SendResponse(res, StatusCodes.BAD_REQUEST, false, 'Please fill all the fields!');
         }
-        const profilePic = path.join(fileUploadPath, fileName).replace(/\\/gi, '/');
+        
+        await CheckUsernameAndEmailExistence(res, username, email);
+
         const profileLink = `${req.protocol}://${req.get('host')}/uploads/profiles/${fileName}`;
 
         const user = await UserModel.create({
