@@ -19,7 +19,7 @@ async function Login(req, res, next) {
         await user.save();
         res.cookie('authorization', token);
 
-        return res.render('dash');
+        return res.render('dash', { user });
     } catch (error) {
         next(error)
     }
@@ -35,15 +35,17 @@ function checkIfFieldsAreNull(...fields) {
 }
 
 async function CheckUsernameAndEmailExistence(res, username, email) {
-    const user = await UserModel.findOne({ $or: [
-        { username },
-        { email }
-    ]})
+    const user = await UserModel.findOne({
+        $or: [
+            { username },
+            { email }
+        ]
+    })
 
     if (!user) return;
 
     let duplicateField;
-    
+
     if (user.username == username && user.email != email) {
         duplicateField = 'Username'
         throw SendResponse(res, StatusCodes.BAD_REQUEST, false, `${duplicateField} already exists`)
@@ -53,11 +55,11 @@ async function CheckUsernameAndEmailExistence(res, username, email) {
         duplicateField = 'email'
         throw SendResponse(res, StatusCodes.BAD_REQUEST, false, `${duplicateField} already exists`)
     }
-    
+
     else if (user.username == username && user.email == email) {
         duplicateField = 'Username and Email'
         throw SendResponse(res, StatusCodes.BAD_REQUEST, false, `${duplicateField} already exists`)
-    } 
+    }
 }
 
 async function Register(req, res, next) {
@@ -68,7 +70,7 @@ async function Register(req, res, next) {
         if (nulls !== 0) {
             throw SendResponse(res, StatusCodes.BAD_REQUEST, false, 'Please fill all the fields!');
         }
-        
+
         await CheckUsernameAndEmailExistence(res, username, email);
 
         const profileLink = `${req.protocol}://${req.get('host')}/uploads/profiles/${fileName}`;

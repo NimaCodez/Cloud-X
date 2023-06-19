@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>داشبورد یوزر</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/styles/dash.style.css" />
+    <link rel="stylesheet" href="../public/styles/appCars.style.css">
+    <title>Dash | Cloud-x</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h1>Hello, <%-user.username%> 👋🏻</h1>
+        </div>
+        <div class="sidebar-menu">
+          <ul>
+            <li>My Apps</li>
+            <li>Databases</li>
+            <li>Domains</li>
+            <li>Buckets</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="main">
+        <%-include('./partials/_chooseApplication.ejs')%>
+      </div>
+    </div>
+    <script src="../public/scripts/setActiveApp.js"></script>
+  </body>
 </html>
