@@ -44,6 +44,7 @@ body {
 
 .main {
   flex: 1;
+  gap: 3em;
   color: #fff;
   padding: 1em  6em;
 }

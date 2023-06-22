@@ -1,5 +1,5 @@
-.app-card {
-    margin-top: 2.5em;
+.location-card {
+    margin-top: 3em;
 }
 
 .wrapper {
@@ -8,6 +8,10 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1em;
+}
+
+.loc-wrapper {
+    margin-top: 4em;
 }
 
 .first-six-part {
@@ -26,9 +30,9 @@
     gap: 1em;
 }
 
-.card {
-    width: 150px;
-    height: 170px;
+.loc-card {
+    height: 180px;
+    width: 230px;
     background-color: #212121;
     color: #fff;
     border-radius: 0.4em;
@@ -36,26 +40,27 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 0.6em;
+    gap: 1.3em;
 }
 
-.card:hover {
+.loc-card:hover {
     box-shadow: 0px 0px 19px -5px #00ce79;
     -webkit-box-shadow: 0px 0px 19px -5px #00ce69;
     -moz-box-shadow: 0px 0px 19px -5px #00ce89;
     transition: all 0.2s ease-out;
 }
 
-.app-card .wrapper img {
-    width: 70px;
-    height: 70px;
+.location-card .wrapper img {
+    width: 110px;
+    height: 80px;
+    border-radius: .2em;
 }
 
-.app-card .wrapper .app-name {
+.location-card .wrapper .loc-name {
     font-size: 1قem;
-    color: #b5b5b5;
+    color: #c6c6c6;
 }
 
-.active {
+.active-loc {
     border: 1px solid #00ce79;
 }
