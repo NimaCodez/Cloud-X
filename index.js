@@ -17,7 +17,6 @@ app.set('view engine', 'ejs');
 
 app.use(AppRouter)
 
-
 ConnectToMongoDB();
 
 app.listen(3000, () => console.log('Running on 3000 | http://localhost:3000'));
